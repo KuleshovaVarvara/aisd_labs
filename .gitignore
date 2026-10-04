@@ -30,3 +30,18 @@
 *.exe
 *.out
 *.app
+
+# Visual Studio временные файлы
+*.obj
+*.log
+*.dll
+*.lib
+*.exe
+*.tlog
+*.lastbuildstate
+*.idb
+*.pdb
+*.dt.djson
+x64/
+Debug/
+Release/
