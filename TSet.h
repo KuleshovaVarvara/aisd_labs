@@ -18,6 +18,9 @@ public:
     T& operator[](int index);
     const T& operator[](int index) const;
     void remove(const T& value);
+    TSet operator+(const TSet& other) const;
+    TSet operator*(const TSet& other) const;
+    TSet operator-(const TSet& other) const;
 };
 
 template <typename T>
@@ -99,4 +102,39 @@ void TSet<T>::remove(const T& value) {
         m_data[j] = m_data[j + 1];
     }
     --m_size;
+}
+
+template <typename T>
+TSet<T> TSet<T>::operator+(const TSet& other) const {
+    TSet<T> result;
+    for (int i = 0; i < m_size; i++) {
+        result.add(m_data[i]);
+    }
+
+    for (int i = 0; i < other.m_size; i++) {
+        result.add(other.m_data[i]);
+    }
+    return result;
+}
+
+template <typename T> 
+TSet<T> TSet<T>::operator*(const TSet& other) const {
+    TSet<T> result;
+    for (int i = 0; i < m_size; i++) {
+        if (other.contains(m_data[i])) {
+            result.add(m_data[i]);
+        }
+    }
+    return result;
+}
+
+template <typename T>
+TSet<T> TSet<T>::operator-(const TSet& other) const {
+    TSet<T> result;
+    for (int i = 0; i < m_size; i++) {
+        if (!other.contains(m_data[i])) {
+            result.add(m_data[i]);
+        }
+    }
+    return result;
 }

@@ -2,22 +2,27 @@
 #include "TSet.h"
 
 int main() {
-    TSet<int> set;
-    set.add(5);
-    set.add(10);
-    set.add(15);
-    set.add(20);
+    TSet<int> A;
+    A.add(1);
+    A.add(2);
+    A.add(3);
 
-    std::cout << "Size: " << set.size() << std::endl;
+    TSet<int> B;
+    B.add(3);
+    B.add(4);
+    B.add(5);
 
-    set.remove(10);
-    std::cout << "After remove(10), size: " << set.size() << std::endl;
-    std::cout << "set[0] = " << set[0] << std::endl;
-    std::cout << "set[1] = " << set[1] << std::endl;
-    std::cout << "set[2] = " << set[2] << std::endl;
+    TSet<int> C = A - B;
 
-    set.remove(99);
-    std::cout << "After remove(99), size: " << set.size() << std::endl;
+    std::cout << "A size: " << A.size() << std::endl;
+    std::cout << "B size: " << B.size() << std::endl;
+    std::cout << "C size (A - B): " << C.size() << std::endl;
+
+    std::cout << "C elements: ";
+    for (int i = 0; i < C.size(); i++) {
+        std::cout << C[i] << " ";
+    }
+    std::cout << std::endl;
 
     return 0;
 }
