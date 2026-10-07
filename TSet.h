@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <stdexcept>
 
 template <typename T>
 class TSet {
@@ -13,6 +14,10 @@ public:
     ~TSet();                   
     int size() const; 
     void add(const T& value);
+    bool contains(const T& value) const;
+    T& operator[](int index);
+    const T& operator[](int index) const;
+    void remove(const T& value);
 };
 
 template <typename T>
@@ -30,11 +35,10 @@ int TSet<T>::size() const {
 
 template <typename T>
 void TSet<T>::add(const T& value) {
-    for (int i = 0; i < m_size; i++) {
-        if (m_data[i] == value) {
-            return;
-        }
+    if (contains(value)) {
+        return;
     }
+
     if (m_size >= m_capacity) {
         int new_capacity = (m_capacity == 0) ? 1 : m_capacity * 2;
         T* new_data = new T[new_capacity];
@@ -50,4 +54,49 @@ void TSet<T>::add(const T& value) {
 
     m_data[m_size] = value;
     ++m_size;
-}    
+}  
+
+template <typename T>
+bool TSet<T>::contains(const T& value) const {
+    for (int i = 0; i < m_size; i++) {
+        if (m_data[i] == value) {
+            return true;
+        }
+    }
+    return false;
+}
+
+template <typename T>
+T& TSet<T>::operator[](int index) {
+    if (index < 0 || index >= m_size) {
+        throw std::out_of_range("Index out of range");
+    }
+    return m_data[index];
+}
+
+template <typename T>
+const T& TSet<T>::operator[](int index) const {
+    if (index < 0 || index >= m_size) {
+        throw std::out_of_range("Index out of range");
+    }
+    return m_data[index];
+}
+
+template <typename T>
+void TSet<T>::remove(const T& value) {
+    int index = -1;
+    for (int i = 0; i < m_size; i++) {
+        if (m_data[i] == value) {
+            index = i;
+            break;
+        }
+    }
+    if (index == -1) {
+        return;
+    }
+
+    for (int j = index; j < m_size - 1; j++) {
+        m_data[j] = m_data[j + 1];
+    }
+    --m_size;
+}
