@@ -1,5 +1,5 @@
-#include <iostream>
-#include "TSet.h"
+import std;
+import TSet;
 
 int main() {
     std::cout << "=== TSet demonstration ===" << std::endl << std::endl;
@@ -90,7 +90,6 @@ int main() {
     std::string words[] = { "apple", "banana", "apple", "cherry" };
     TSet<std::string> S(words, 4);
     std::cout << "S = " << S << std::endl;
-
     S.add("date");
     std::cout << "After add(\"date\"): S = " << S << std::endl << std::endl;
 
