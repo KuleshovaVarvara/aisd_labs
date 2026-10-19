@@ -118,6 +118,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
       <BuildStlModules>true</BuildStlModules>
+      <DisableSpecificWarnings>6385;6386</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,6 +140,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
       <BuildStlModules>true</BuildStlModules>
+      <DisableSpecificWarnings>6385;6386</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
